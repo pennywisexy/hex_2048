@@ -1,0 +1,55 @@
+.hexagon {
+  position: absolute;
+  --size: 100px;
+  --height-factor: 1.1547;
+  --height: calc(var(--size) / var(--height-factor));
+  --background-color: #B5A79A;
+  --color: #fff;
+  --z-index: 1;
+  --animation-time: 0;
+  width: var(--size);
+  height: calc(var(--size) / var(--height-factor));
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background: #B5A79A;
+  left: var(--left);
+  top: var(--top);
+  color: var(--color);
+  font-size: 18px;
+  z-index: var(--z-index);
+  transform: translate(-50%, -50%);
+
+  animation-name: hexagon;
+  animation-duration: var(--animation-time);
+}
+
+.hexagon:after {
+  --inner-size: calc(var(--size) - 6px);
+  content: "";
+  position: absolute;
+  left: calc(2.5px * var(--height-factor));
+  top: calc(2.5px * var(--height-factor));
+  width: var(--inner-size);
+  height: calc(var(--inner-size) / var(--height-factor));
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background: var(--background-color);
+}
+
+.content {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+@keyframes hexagon {
+  from {
+    top: var(--prev-top);
+    left: var(--prev-left);
+  }
+  to {
+    top: var(--top);
+    left: var(--left);
+  }
+}

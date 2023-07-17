@@ -1,0 +1,258 @@
+.container {
+  position: relative;
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.startButton {
+  width: fit-content;
+  padding: 10px 20px;
+  background: none;
+  border: 1px solid rgba(48, 69, 89, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.startButton:active {
+  background: rgba(48, 69, 89, 0.2);
+}
+
+.textControlsContainer {
+  width: 100%;
+  height: 100px;
+}
+
+.textControlsGroup {
+  display: flex;
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.formField {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #9b9b9b;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.formField::placeholder {
+  color: transparent;
+}
+
+.formField:placeholder-shown ~ .formLabel {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+
+.formLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+.formField:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  color: #3d3d3d;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+}
+
+.formField:focus ~ .formLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #11998e;
+  font-weight: 700;
+}
+
+/* reset input */
+.formField:required, .formField:invalid {
+  box-shadow: none;
+}
+
+
+.rangeWrapper {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rangeTitle {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.debtAmountSlider {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  user-select: none;
+}
+
+.debtAmountSlider::before {
+  content: " ";
+  position: absolute;
+  height: 2px;
+  width: calc(100% * (4 / 5));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+}
+
+.debtAmountSlider input, form .debtAmountSlider label {
+  box-sizing: border-box;
+  flex: 1;
+  user-select: none;
+  cursor: pointer;
+}
+
+.debtAmountSlider label {
+  display: inline-block;
+  position: relative;
+  width: 20%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.debtAmountSlider label::before {
+  content: attr(data-level);
+  position: absolute;
+  left: 50%;
+  padding-top: 10px;
+  transform: translate(-50%, 45px);
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: all 0.15s ease-in-out;
+}
+
+.debtAmountSlider label::after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border: 2px solid #000;
+  background: #fff;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 1;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.debtAmountSlider label:hover::after {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.debtAmountSlider input {
+  display: none;
+}
+
+.debtAmountSlider input:checked + label::before {
+  font-weight: 800;
+  opacity: 1;
+}
+
+.debtAmountSlider input:checked + label::after {
+  border-width: 4px;
+  transform: translate(-50%, -50%) scale(0.75);
+}
+
+.debtAmountSlider input:checked ~ .debtAmountPos {
+  opacity: 1;
+}
+
+.debtAmountSlider input:checked:nth-child(1) ~ .debtAmountPos {
+  left: 10%;
+}
+
+.debtAmountSlider input:checked:nth-child(3) ~ .debtAmountPos {
+  left: 30%;
+}
+
+.debtAmountSlider input:checked:nth-child(5) ~ .debtAmountPos {
+  left: 50%;
+}
+
+.debtAmountSlider input:checked:nth-child(7) ~ .debtAmountPos {
+  left: 70%;
+}
+
+.debtAmountSlider input:checked:nth-child(9) ~ .debtAmountPos {
+  left: 90%;
+}
+
+.debtAmountSlider .debtAmountPos {
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #000;
+  border-radius: 50%;
+  transition: all 0.15s ease-in-out;
+  transform: translate(-50%, -50%);
+  border: 2px solid #fff;
+  opacity: 0;
+  z-index: 2;
+}
+
+.debtAmountSlider input + label::before {
+  transform: translate(-50%, 45px) scale(0.9);
+  transition: all 0.15s linear;
+}
+
+.debtAmountSlider input:checked + label::before {
+  transform: translate(-50%, 45px) scale(1.1);
+  transition: all 0.15s linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    width: 24px;
+    opacity: 1;
+    margin-right: 12px;
+  }
+  to {
+    transform: rotate(360deg);
+    width: 24px;
+    opacity: 1;
+    margin-right: 12px;
+  }
+}
